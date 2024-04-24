@@ -500,6 +500,64 @@ function showSummary() {
     document.getElementById('summaryMessage').innerHTML = summary;
     document.getElementById('summaryMessage').style.display = 'block';
 }
+    document.addEventListener('DOMContentLoaded', function() {
+    // Animasi untuk halaman pertama yang dimuat
+    var header = document.querySelector('header');
+    header.style.opacity = '0'; // Set opasitas menjadi 0 agar terlihat tidak terlihat saat pertama kali dimuat
+    setTimeout(function() {
+        header.style.transition = 'opacity 1s ease-in-out'; // Tambahkan efek transisi
+        header.style.opacity = '1'; // Set opasitas kembali ke 1 untuk memunculkan dengan animasi
+    }, 500); // Waktu penundaan sebelum animasi dimulai (dalam milidetik)
+
+    // Fungsi untuk menambahkan animasi saat memilih menu
+    function animateMenu() {
+        var menuLinks = document.querySelectorAll('nav ul li a');
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                menuLinks.forEach(function(link) {
+                    link.classList.remove('active'); // Hapus kelas active dari semua link menu
+                });
+                this.classList.add('active'); // Tambahkan kelas active pada link menu yang dipilih
+            });
+        });
+    }
+    animateMenu(); // Panggil fungsi untuk menambahkan animasi menu saat halaman dimuat
+
+    // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain dengan animasi
+    function showPage(pageId) {
+        var pages = document.querySelectorAll('section');
+        pages.forEach(function(page) {
+            page.style.opacity = '0'; // Set opasitas menjadi 0 agar terlihat tidak terlihat saat pertama kali dimuat
+        });
+        setTimeout(function() {
+            pages.forEach(function(page) {
+                page.style.display = 'none'; // Sembunyikan semua halaman
+            });
+            document.getElementById(pageId).style.display = 'block'; // Tampilkan halaman yang dipilih
+            setTimeout(function() {
+                document.getElementById(pageId).style.transition = 'opacity 1s ease-in-out'; // Tambahkan efek transisi
+                document.getElementById(pageId).style.opacity = '1'; // Set opasitas kembali ke 1 untuk memunculkan dengan animasi
+            }, 100); // Waktu penundaan sebelum animasi dimulai (dalam milidetik)
+        }, 500); // Waktu penundaan sebelum menyembunyikan halaman (dalam milidetik)
+    }
+
+    // Fungsi untuk menambahkan event listener ke setiap tautan menu
+    function addMenuEventListeners() {
+        var menuLinks = document.querySelectorAll('nav ul li a');
+        menuLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Mencegah tautan bawaan dari berpindah halaman
+                var pageId = this.getAttribute('href').substring(1); // Mendapatkan id halaman dari atribut href
+                showPage(pageId); // Tampilkan halaman yang dipilih dengan animasi
+            });
+        });
+    }
+    addMenuEventListeners(); // Panggil fungsi untuk menambahkan event listener ke setiap tautan menu
+
+    // Secara default, tampilkan halaman Beranda saat pertama kali dimuat
+    showPage('beranda');
+});
+
 </script>
 
 </body>
