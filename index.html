@@ -458,45 +458,45 @@ p {
 
 <script>
 //     // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
-//     function showPage(pageId) {
-//         // Mendapatkan semua elemen section
-//         var pages = document.querySelectorAll('section');
+    function showPage(pageId) {
+        // Mendapatkan semua elemen section
+        var pages = document.querySelectorAll('section');
         
-//         // Menyembunyikan semua halaman
-//         pages.forEach(function(page) {
-//             page.style.display = 'none';
-//         });
+        // Menyembunyikan semua halaman
+        pages.forEach(function(page) {
+            page.style.display = 'none';
+        });
         
-//         // Menampilkan halaman yang dipilih
-//         document.getElementById(pageId).style.display = 'block';
-//     }
+        // Menampilkan halaman yang dipilih
+        document.getElementById(pageId).style.display = 'block';
+    }
     
 //     // Secara default, tampilkan halaman Beranda saat pertama kali dimuat
 //     showPage('beranda');
 
-//     // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
-function showPage(pageId) {
-    // Mendapatkan semua elemen section
-    var pages = document.querySelectorAll('section');
+// //     // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
+// function showPage(pageId) {
+//     // Mendapatkan semua elemen section
+//     var pages = document.querySelectorAll('section');
     
-    // Menyembunyikan semua halaman
-    pages.forEach(function(page) {
-        page.style.display = 'none';
-    });
+//     // Menyembunyikan semua halaman
+//     pages.forEach(function(page) {
+//         page.style.display = 'none';
+//     });
     
-    // Menampilkan halaman yang dipilih
-    document.getElementById(pageId).style.display = 'block';
+//     // Menampilkan halaman yang dipilih
+//     document.getElementById(pageId).style.display = 'block';
 
-    // Menghapus kelas active dari semua link menu
-    var menuLinks = document.querySelectorAll('nav ul li a');
-    menuLinks.forEach(function(link) {
-        link.classList.remove('active');
-    });
+//     // Menghapus kelas active dari semua link menu
+//     var menuLinks = document.querySelectorAll('nav ul li a');
+//     menuLinks.forEach(function(link) {
+//         link.classList.remove('active');
+//     });
 
-    // Menambahkan kelas active pada link menu yang sedang aktif
-    var activeLink = document.querySelector('nav ul li a[href="#' + pageId + '"]');
-    activeLink.classList.add('active');
-}
+//     // Menambahkan kelas active pada link menu yang sedang aktif
+//     var activeLink = document.querySelector('nav ul li a[href="#' + pageId + '"]');
+//     activeLink.classList.add('active');
+// }
 // function showSummary() {
 //     // Ambil nilai dari input
 //     var nama = document.getElementById('nama').value;
