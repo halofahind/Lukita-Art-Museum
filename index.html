@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Memuat Font Awesome untuk ikon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Memuat CSS untuk flatpickr -->
 <style>
+    .animated-element {
+    opacity: 0; /* Atur opasitas menjadi 0 (tidak terlihat) */
+    transition: opacity 1s ease; /* Tambahkan transisi untuk efek animasi */
+  }
     .info-box {
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -237,7 +241,7 @@ nav ul li a:active {
 </head>
 <body>
 <header>
-    <h1>Lukita Art Museum</h1>
+    <h1 class="animated-element">Lukita Art Museum</h1>
 </header>
 <nav>
     <ul>
@@ -498,6 +502,17 @@ function showSummary() {
     document.getElementById('summaryMessage').innerHTML = summary;
     document.getElementById('summaryMessage').style.display = 'block';
 }
+     function showAnimatedElements() {
+    const animatedElements = document.querySelectorAll('.animated-element');
+    animatedElements.forEach(element => {
+      element.style.opacity = 1; // Atur opasitas menjadi 1 (terlihat)
+    });
+  }
+
+  // Panggil fungsi showAnimatedElements saat dokumen selesai dimuat
+  document.addEventListener('DOMContentLoaded', function() {
+    showAnimatedElements();
+  });
 </script>
 
 </body>
