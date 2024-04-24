@@ -6,8 +6,6 @@
 <title>Lukita Art</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Memuat Font Awesome untuk ikon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Memuat CSS untuk flatpickr -->
-// Redirect to the Vercel deployment URL
-
 
 <style>
     .info-box {
@@ -542,7 +540,7 @@ p {
     function showPage(pageId) {
         var pages = document.querySelectorAll('section');
         pages.forEach(function(page) {
-            page.style.opacity = '0'; // Set opasitas menjadi 0 agar terlihat tidak terlihat saat pertama kali dimuat
+            page.style.opacity = '1'; // Set opasitas menjadi 0 agar terlihat tidak terlihat saat pertama kali dimuat
         });
         setTimeout(function() {
             pages.forEach(function(page) {
