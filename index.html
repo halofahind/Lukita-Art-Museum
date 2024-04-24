@@ -237,6 +237,16 @@ nav ul li a:active {
     .ticket-prices th {
         background-color: #f2f2f2;
     }
+    .animated-section {
+    opacity: 0; /* Atur opasitas menjadi 0 (tidak terlihat) */
+    transition: opacity 0.5s ease; /* Tambahkan transisi untuk efek animasi */
+  }
+
+  /* Gaya untuk animasi tambahan */
+  .animation-active {
+    opacity: 1; /* Atur opasitas menjadi 1 (terlihat) */
+    transform: translateY(0); /* Kembalikan ke posisi semula */
+  }
 </style>
 </head>
 <body>
@@ -251,7 +261,7 @@ nav ul li a:active {
     </ul>
 </nav>
 <div class="container">
-    <section id="beranda">
+    <section id="beranda" class="animated-section">
         <h2>Beranda</h2>
         <div class="info-box">
             <h3>Tentang Kami</h3>
@@ -268,7 +278,7 @@ nav ul li a:active {
             <p>Email: info@lukitaartmuseum.com</p>
         </div>
     </section>
-    <section id="beli-tiket" style="display: none;">
+    <section id="beli-tiket" style="display: none;" class="animated-section">
         <h2>Beli Tiket</h2>
         <div class="ticket-prices">
             <h3>Harga Tiket</h3>
@@ -338,7 +348,7 @@ nav ul li a:active {
         </div>
         
     </section>
-    <section id="lukisan" style="display: none;">
+    <section id="lukisan" style="display: none;" class="animated-section">
         <div class="lukisan-header">
         <h2>Lukisan dan Seniman</h2>
         </div>
@@ -512,6 +522,21 @@ function showSummary() {
   // Panggil fungsi showAnimatedElements saat dokumen selesai dimuat
   document.addEventListener('DOMContentLoaded', function() {
     showAnimatedElements();
+  });
+     // Fungsi untuk menambahkan event listener ke setiap tautan menu
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Mencegah tautan bawaan dari berpindah halaman
+
+      // Menghapus kelas active dari semua bagian
+      document.querySelectorAll('.animated-section').forEach(section => {
+        section.classList.remove('animation-active');
+      });
+
+      // Menambahkan kelas active ke bagian yang sesuai dengan tautan yang diklik
+      const targetId = this.getAttribute('href').substring(1);
+      document.getElementById(targetId).classList.add('animation-active');
+    });
   });
 </script>
 
