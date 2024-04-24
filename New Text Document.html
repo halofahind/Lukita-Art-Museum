@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lukita Art</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Memuat Font Awesome untuk ikon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Memuat CSS untuk flatpickr -->
+<style>
+    .info-box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-box h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.info-box p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Style untuk contact-box */
+.contact-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.contact-box h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.contact-box p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 5px;
+}
+    body {
+        font-family: Arial, sans-serif; /* Font default */
+        margin: 0;
+        padding: 0;
+        background-color: #f3f3f3; /* Warna latar belakang */
+    }
+    header {
+        background-color: #400d0d;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        font-family: 'Pacifico', cursive; /* Font yang menarik untuk judul */
+    }
+    nav {
+        background-color: #770c0c;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .container {
+        padding: 20px;
+    }
+    nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s; /* Efek transisi perubahan warna */
+}
+nav ul li a.active {
+    font-weight: bold; /* Contoh memberikan gaya bold pada menu aktif */
+    color: #ff6600; /* Contoh memberikan warna yang berbeda pada menu aktif */
+}
+nav ul li a:hover {
+    color: #ccc; /* Warna saat cursor diarahkan ke menu */
+}
+
+nav ul li a:active {
+    color: #999; /* Warna saat menu sedang aktif (sedang diklik) */
+}
+    /* Styling untuk bagian Lukisan */
+    .lukisan-header {
+    background-color: #390000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px 5px 0 0; /* Mengatur sudut border radius agar terlihat menarik */
+    margin-bottom: 10px; /* Jarak bawah agar terpisah dari daftar lukisan */
+}
+/* Gaya untuk kotak pesan ringkasan */
+.summary-message {
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    display: none; /* Agar kotak pesan ringkasan awalnya disembunyikan */
+    border-radius: 5px; /* Membuat sudut kotak menjadi melengkung */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan pada kotak */
+}
+
+/* Gaya untuk teks dalam kotak pesan ringkasan */
+.summary-message p {
+    margin: 0 0 10px; /* Mengatur jarak antara setiap paragraf */
+}
+.lukisan-header h2 {
+    margin: 0; /* Menghilangkan margin bawaan dari h2 */
+}
+/* Gaya untuk warna font putih di menu lukisan */
+#lukisan {
+    color: white; /* Ubah warna font menjadi putih */
+}
+
+    #lukisan {
+        display: none; /* Lukisan disembunyikan secara default */
+        background-color: #ffc684;
+    }
+    #lukisan.show {
+        display: block; /* Lukisan ditampilkan ketika tombol Lukisan diklik */
+    }
+    .paintings {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .painting {
+        margin: 10px;
+        padding: 10px;
+        background-color: #480000;
+        border-radius: 15px;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        width: 350px;
+        text-align: center;
+    }
+        /* Font untuk judul lukisan */
+        .painting h3 {
+        font-family: 'Pacifico', cursive; /* Menggunakan font yang menarik */
+        font-size: 24px; /* Ukuran font yang lebih besar untuk judul */
+        margin-top: 10px; /* Memberi ruang atas antara judul dan gambar */
+    }
+
+    /* Font untuk informasi di bawah gambar */
+    .painting p {
+        font-family: Arial, sans-serif; /* Menggunakan font yang legible */
+        font-size: 16px; /* Ukuran font yang lebih kecil untuk informasi */
+        margin-top: 5px; /* Memberi ruang atas antara informasi */
+    }
+    .painting .description {
+    font-weight: bold; /* Menjadikan teks deskripsi lebih tebal */
+    font-size: 14px; /* Menyesuaikan ukuran font */
+}
+
+.painting .description span {
+    font-weight: normal; /* Mengurangi ketebalan font pada elemen span di dalam deskripsi */
+}
+    /* Styling untuk form pembelian tiket */
+    .ticket-form {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .ticket-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    .ticket-form input[type="text"],
+    .ticket-form input[type="email"],
+    .ticket-form input[type="number"],
+    .ticket-form input[type="datetime-local"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .ticket-form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .ticket-form input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    /* Styling untuk tabel harga tiket */
+    .ticket-prices {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+    }
+    .ticket-prices table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .ticket-prices th, .ticket-prices td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .ticket-prices th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Lukita Art Museum</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="#" onclick="showPage('beranda')">Beranda</a></li>
+        <li><a href="#" onclick="showPage('beli-tiket')">Beli Tiket</a></li>
+        <li><a href="#" onclick="showPage('lukisan')">Lukisan</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <section id="beranda">
+        <h2>Beranda</h2>
+        <div class="info-box">
+            <h3>Tentang Kami</h3>
+            <p>Selamat datang di Lukita Art Museum: Sebuah Harta Karun Seni yang Merentang Melintasi Generasi. Sebagai penjaga warisan seni suatu bangsa, kami membuka pintu gerbang ke dunia yang mempesona, memperkenalkan Anda pada kekayaan budaya yang telah melintasi zaman dan membangkitkan jiwa bangsa.</p>
+            <p>Di jantung museum ini terletak kisah-kisah sejarah yang mengesankan, menyoroti perjalanan panjang suatu negara melalui lensa seni. Setiap karya yang dipamerkan adalah bukti nyata dari kehidupan, mimpi, dan perjuangan para seniman yang telah melewati masa-masa sulit dan kegembiraan dalam perjalanan mereka menuju keabadian.</p>
+            <p>Melalui sentuhan kuas dan warna, Lukita Art Museum membawa Anda dalam perjalanan yang melintasi zaman, dari masa kejayaan hingga masa kebangkitan kembali. Dari lukisan-lukisan purbakala yang mengekspresikan kekaguman pada alam hingga karya-karya modern yang merefleksikan perubahan sosial dan politik, setiap sudut museum ini menyatu dalam sebuah simfoni yang memukau.</p>
+            <p>Kami bangga menghadirkan koleksi yang menceritakan tentang perjalanan yang penuh warna dari generasi ke generasi. Dari seni tradisional yang diwariskan secara turun-temurun hingga inovasi kontemporer yang menggetarkan jiwa, kami memelihara api kreativitas yang tak pernah padam.</p>
+            <p>Bergabunglah dengan kami untuk menjelajahi keajaiban-keajaiban yang tersembunyi, meresapi kekayaan sejarah yang terpancar dalam setiap goresan kuas, dan merasakan kekuatan penyatuan budaya yang berbicara melalui bahasa universal seni. Selamat menikmati perjalanan Anda melalui Lukita Art Museum, di mana masa lalu bertemu masa kini untuk menciptakan masa depan yang menginspirasi.</p>
+        </div>
+        <div class="contact-box">
+            <h3>Kontak</h3>
+            <p>Alamat: Jl. Seni No. 123, Kota Seni</p>
+            <p>Nomor Telepon: +62 123 4567 890</p>
+            <p>Email: info@lukitaartmuseum.com</p>
+        </div>
+    </section>
+    <section id="beli-tiket" style="display: none;">
+        <h2>Beli Tiket</h2>
+        <div class="ticket-prices">
+            <h3>Harga Tiket</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipe Tiket</th>
+                        <th>Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Silver</td>
+                        <td>Rp15.000</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>Rp25.000</td>
+                    </tr>
+                    <tr>
+                        <td>Platinum</td>
+                        <td>Rp35.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="ticket-form">
+            <form action="proses_pembelian.php" method="post">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+                
+                <label for="alamat">Alamat:</label>
+                <input type="text" id="alamat" name="alamat" required>
+                
+                <label for="umur">Umur:</label>
+                <input type="number" id="umur" name="umur" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="tipe_tiket">Tipe Tiket:</label>
+                <select id="tipe_tiket" name="tipe_tiket" required>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinum">Platinum</option>
+                </select>
+                
+                <label for="jumlah_tiket">Jumlah Tiket:</label>
+                <input type="number" id="jumlah_tiket" name="jumlah_tiket" min="1" required>
+                
+                <label for="tanggal">Tanggal Kunjungan:</label>
+                <input type="datetime-local" id="tanggal" name="tanggal" required>
+        
+                <!-- Tambahkan atribut jenis pembayaran -->
+                <label for="jenis_pembayaran">Jenis Pembayaran:</label>
+                <select id="jenis_pembayaran" name="jenis_pembayaran" required>
+                    <option value="Kartu Kredit">Kartu Kredit</option>
+                    <option value="Transfer Bank">Transfer Bank</option>
+                    <option value="Pembayaran Tunai">Pembayaran Tunai</option>
+                </select>
+                
+                <input type="submit" value="Beli Tiket" onclick="showSummary()">
+
+                
+            </form>
+            
+        </div>
+        
+    </section>
+    <section id="lukisan" style="display: none;">
+        <div class="lukisan-header">
+        <h2>Lukisan dan Seniman</h2>
+        </div>
+        <div class="paintings">
+            <div class="painting">
+                <h3>Lukisan Mona Lisa</h3>
+                <img src="E:\monalisa.jpg" alt="Mona Lisa">
+                <p><b>Jenis</b></p>
+                <p>Lukisan Minyak</p>
+                <p><b>Seniman</b></p>
+                <p>Leonardo Da Vinci</p>
+                <p><b>Harga</b></p>
+                <p>Rp800 juta</p>
+                
+            </div>
+            <div class="painting">
+                <h3>Lukisan Starry Night</h3>
+                <img src="E:\starry_night.jpg" alt="Starry Night">
+            
+                <p><b>Jenis</b></p>
+                <p>Lukisan Minyak</p>
+                <p><b>Seniman</b></p>
+                <p>Vincent van Gogh</p>
+                <p><b>Harga</b></p>
+                <p>Rp100 juta</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Persistence of Memory</h3>
+                <img src="E:\dali.jpg" alt="The Persistence of Memory">
+ 
+                <p><b>Jenis</b></p>
+                <p>Lukisan Minyak</p>
+                <p><b>Seniman</b></p>
+                <p>Salvador Dalí</p>
+                <p><b>Harga</b></p>
+                <p>Rp 640.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan Guernica</h3>
+                <img src="E:\guernica.jpg" alt="Guernica">
+                <p>Seniman: Pablo Picasso</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 1.200.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Scream</h3>
+                <img src="E:\scream.jpg" alt="The Scream">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <div class="painting">
+                <h3>Lukisan The Sun</h3>
+                <img src="E:\scream.jpg" alt="">
+                <p>Seniman: Edvard Munch</p>
+                <p>Jenis: Lukisan Minyak</p>
+                <p>Harga: Rp 960.000.000</p>
+            </div>
+            <!-- Tambahkan lukisan-lukisan lainnya di sini -->
+        </div>
+    </section>
+</div>
+
+<script>
+    // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
+    function showPage(pageId) {
+        // Mendapatkan semua elemen section
+        var pages = document.querySelectorAll('section');
+        
+        // Menyembunyikan semua halaman
+        pages.forEach(function(page) {
+            page.style.display = 'none';
+        });
+        
+        // Menampilkan halaman yang dipilih
+        document.getElementById(pageId).style.display = 'block';
+    }
+    
+    // Secara default, tampilkan halaman Beranda saat pertama kali dimuat
+    showPage('beranda');
+
+    // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
+function showPage(pageId) {
+    // Mendapatkan semua elemen section
+    var pages = document.querySelectorAll('section');
+    
+    // Menyembunyikan semua halaman
+    pages.forEach(function(page) {
+        page.style.display = 'none';
+    });
+    
+    // Menampilkan halaman yang dipilih
+    document.getElementById(pageId).style.display = 'block';
+
+    // Menghapus kelas active dari semua link menu
+    var menuLinks = document.querySelectorAll('nav ul li a');
+    menuLinks.forEach(function(link) {
+        link.classList.remove('active');
+    });
+
+    // Menambahkan kelas active pada link menu yang sedang aktif
+    var activeLink = document.querySelector('nav ul li a[href="#' + pageId + '"]');
+    activeLink.classList.add('active');
+}
+function showSummary() {
+    // Ambil nilai dari input
+    var nama = document.getElementById('nama').value;
+    var alamat = document.getElementById('alamat').value;
+    // tambahkan ambil nilai lainnya sesuai kebutuhan
+
+    // Buat pesan ringkasan
+    var summary = "<p>Terima kasih telah membeli tiket. Berikut ringkasan pembelian Anda:</p>";
+    summary += "<p>Nama: " + nama + "</p>";
+    summary += "<p>Alamat: " + alamat + "</p>";
+    // tambahkan ringkasan lainnya sesuai kebutuhan
+
+    // Tampilkan pesan ringkasan
+    document.getElementById('summaryMessage').innerHTML = summary;
+    document.getElementById('summaryMessage').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
