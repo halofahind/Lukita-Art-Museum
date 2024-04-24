@@ -523,21 +523,20 @@ function showSummary() {
   document.addEventListener('DOMContentLoaded', function() {
     showAnimatedElements();
   });
-     // Fungsi untuk menambahkan event listener ke setiap tautan menu
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(event) {
-      event.preventDefault(); // Mencegah tautan bawaan dari berpindah halaman
+   document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault(); // Mencegah tautan bawaan dari berpindah halaman
 
-      // Menghapus kelas active dari semua bagian
-      document.querySelectorAll('.animated-section').forEach(section => {
-        section.classList.remove('animation-active');
-      });
-
-      // Menambahkan kelas active ke bagian yang sesuai dengan tautan yang diklik
-      const targetId = this.getAttribute('href').substring(1);
-      document.getElementById(targetId).classList.add('animation-active');
+    // Menghapus kelas active dari semua bagian
+    document.querySelectorAll('.animated-section').forEach(section => {
+      section.classList.remove('animation-active');
     });
+
+    // Menambahkan kelas active ke bagian yang sesuai dengan tautan yang diklik
+    const targetId = this.getAttribute('href').substring(1);
+    document.getElementById(targetId).classList.add('animation-active');
   });
+});
 </script>
 
 </body>
