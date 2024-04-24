@@ -6,11 +6,10 @@
 <title>Lukita Art</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Memuat Font Awesome untuk ikon -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Memuat CSS untuk flatpickr -->
+// Redirect to the Vercel deployment URL
+
+
 <style>
-    .animated-element {
-    opacity: 0; /* Atur opasitas menjadi 0 (tidak terlihat) */
-    transition: opacity 1s ease; /* Tambahkan transisi untuk efek animasi */
-  }
     .info-box {
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -237,16 +236,6 @@ nav ul li a:active {
     .ticket-prices th {
         background-color: #f2f2f2;
     }
-    .animated-section {
-    opacity: 0; /* Atur opasitas menjadi 0 (tidak terlihat) */
-    transition: opacity 0.5s ease; /* Tambahkan transisi untuk efek animasi */
-  }
-
-  /* Gaya untuk animasi tambahan */
-  .animation-active {
-    opacity: 1; /* Atur opasitas menjadi 1 (terlihat) */
-    transform: translateY(0); /* Kembalikan ke posisi semula */
-  }
 </style>
 </head>
 <body>
@@ -255,13 +244,13 @@ nav ul li a:active {
 </header>
 <nav>
     <ul>
-      <li><a href="#beranda">Beranda</a></li>
-      <li><a href="#beli-tiket">Beli Tiket</a></li>
-      <li><a href="#lukisan">Lukisan</a></li>
+        <li><a href="#" onclick="showPage('beranda')">Beranda</a></li>
+        <li><a href="#" onclick="showPage('beli-tiket')">Beli Tiket</a></li>
+        <li><a href="#" onclick="showPage('lukisan')">Lukisan</a></li>
     </ul>
-  </nav>
+</nav>
 <div class="container">
-    <section id="beranda" style="display: none;">
+    <section id="beranda">
         <h2>Beranda</h2>
         <div class="info-box">
             <h3>Tentang Kami</h3>
@@ -278,7 +267,7 @@ nav ul li a:active {
             <p>Email: info@lukitaartmuseum.com</p>
         </div>
     </section>
-    <section id="beli-tiket" class="animated-section" class="animation-active">
+    <section id="beli-tiket" style="display: none;">
         <h2>Beli Tiket</h2>
         <div class="ticket-prices">
             <h3>Harga Tiket</h3>
@@ -348,7 +337,7 @@ nav ul li a:active {
         </div>
         
     </section>
-    <section id="lukisan" style="display: none;" class="animated-section">
+    <section id="lukisan" style="display: none;">
         <div class="lukisan-header">
         <h2>Lukisan dan Seniman</h2>
         </div>
@@ -455,7 +444,7 @@ nav ul li a:active {
 </div>
 
 <script>
-   
+    window.location.href = 'https://lukita-art-museum.vercel.app/';
     // Fungsi untuk menampilkan halaman yang sesuai dan menyembunyikan yang lain
     function showPage(pageId) {
         // Mendapatkan semua elemen section
@@ -512,31 +501,6 @@ function showSummary() {
     document.getElementById('summaryMessage').innerHTML = summary;
     document.getElementById('summaryMessage').style.display = 'block';
 }
-    function showAnimatedElements() {
-    const animatedElements = document.querySelectorAll('.animated-element');
-    animatedElements.forEach(element => {
-      element.style.opacity = 1; // Atur opasitas menjadi 1 (terlihat)
-    });
-  }
-
-  // Panggil fungsi showAnimatedElements saat dokumen selesai dimuat
-  document.addEventListener('DOMContentLoaded', function() {
-    showAnimatedElements();
-  });
-   document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', function(event) {
-    event.preventDefault(); // Mencegah tautan bawaan dari berpindah halaman
-
-    // Menghapus kelas active dari semua bagian
-    document.querySelectorAll('.animated-section').forEach(section => {
-      section.classList.remove('animation-active');
-    });
-
-    // Menambahkan kelas active ke bagian yang sesuai dengan tautan yang diklik
-    const targetId = this.getAttribute('href').substring(1);
-    document.getElementById(targetId).classList.add('animation-active');
-  });
-});
 </script>
 
 </body>
