@@ -65,16 +65,24 @@
         background-color: #f3f3f3; /* Warna latar belakang */
     }
     header {
-        background-color: #400d0d;
+       background-color: #400d0d;
         color: #fff;
         padding: 10px 0;
         text-align: center;
         font-family: 'Pacifico', cursive; /* Font yang menarik untuk judul */
+        position: sticky; /* Menjadikan posisi sticky */
+        top: 0; /* Menempelkan header di bagian atas saat di-scroll */
+        z-index: 1000; /* Menentukan z-index agar header tampil di atas konten lain */
+    }
+
     }
     nav {
-        background-color: #770c0c;
+         background-color: #770c0c;
         padding: 10px 0;
         text-align: center;
+        position: sticky; /* Menjadikan posisi sticky */
+        top: 40px; /* Menempelkan navbar 40px di bawah header saat di-scroll */
+        z-index: 1000; /* Menentukan z-index agar navbar tampil di atas konten lain */
     }
     nav ul {
         list-style-type: none;
