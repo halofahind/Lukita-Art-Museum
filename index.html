@@ -183,12 +183,14 @@ nav ul li a:active {
         margin-top: 5px; /* Memberi ruang atas antara informasi */
     }
     .painting .description {
-    font-weight: bold; /* Menjadikan teks deskripsi lebih tebal */
+    font-weight: bold; /* Menjadikan teks sub judul lebih tebal */
     font-size: 14px; /* Menyesuaikan ukuran font */
+    text-align: left; /* Mengatur posisi teks ke kiri */
 }
 
 .painting .description span {
     font-weight: normal; /* Mengurangi ketebalan font pada elemen span di dalam deskripsi */
+    display: block; /* Mengatur elemen span menjadi block agar berada di bawah sub judul */
 }
     /* Styling untuk form pembelian tiket */
     .ticket-form {
@@ -370,7 +372,7 @@ nav ul li a:active {
     </section>
     <section id="lukisan" style="display: none;">
         <div class="lukisan-header">
-        <h2>Lukisan dan Seniman</h2>
+        <h2>Gallery</h2>
         </div>
         <div class="paintings">
             <div class="painting">
@@ -421,7 +423,7 @@ nav ul li a:active {
                 <p>Harga: Rp 960.000.000</p>
             </div>
             <div class="painting">
-                <h3>Lukisan The Sun</h3>
+                <h3>Lukisan Self-Portrait with Thorn Necklace and Hummingbird</h3>
                 <img src="scream.jpg" alt="">
                 <p>Seniman: Edvard Munch</p>
                 <p>Jenis: Lukisan Minyak</p>
